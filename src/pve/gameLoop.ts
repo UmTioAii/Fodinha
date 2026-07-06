@@ -28,7 +28,7 @@ export interface GameLoopCallbacks {
 
 const CHANCE_TO_CHAT = 0.35 // 35% chance to send a chat message
 
-function triggerBotChat(callbacks: GameLoopCallbacks, playerId: string, playerName: string, context: 'WIN' | 'LOSS' | 'ELIMINATED' | 'START') {
+function triggerBotChat(callbacks: GameLoopCallbacks, playerId: string, context: 'WIN' | 'LOSS' | 'ELIMINATED' | 'START') {
   if (Math.random() > CHANCE_TO_CHAT) return
   
   const options = {
@@ -157,7 +157,7 @@ export async function runTrickResolution(
   })
   
   if (winner && winner.type === 'BOT') {
-    triggerBotChat(callbacks, winner.id, winner.name, 'WIN')
+    triggerBotChat(callbacks, winner.id, 'WIN')
   }
 
   callbacks.onStateChange(resolved)
@@ -189,7 +189,7 @@ export async function runRoundScoring(
         playerId: player.id,
       })
       if (player.type === 'BOT') {
-        triggerBotChat(callbacks, player.id, player.name, 'LOSS')
+        triggerBotChat(callbacks, player.id, 'LOSS')
       }
     }
   }
@@ -207,7 +207,7 @@ export async function runRoundScoring(
         playerId: player.id,
       })
       if (player.type === 'BOT') {
-        triggerBotChat(callbacks, player.id, player.name, 'ELIMINATED')
+        triggerBotChat(callbacks, player.id, 'ELIMINATED')
       }
     }
   }
