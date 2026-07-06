@@ -24,8 +24,9 @@ export function TableLayout({ state }: TableLayoutProps) {
     const angle = (Math.PI / 2) - (index * 2 * Math.PI / totalPlayers)
     
     // Oval radius percentages (keeps them away from the exact edge)
-    const rx = 40
-    const ry = 35
+    // Using slightly smaller radius to prevent clipping on mobile screens
+    const rx = 35
+    const ry = 32
     
     const x = 50 + rx * Math.cos(angle)
     const y = 50 + ry * Math.sin(angle)
@@ -39,10 +40,10 @@ export function TableLayout({ state }: TableLayoutProps) {
   }
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto flex items-center justify-center p-4 md:p-8 mt-10">
+    <div className="relative w-full max-w-4xl mx-auto flex items-center justify-center p-1 md:p-8 mt-4 md:mt-10">
       {/* The felt table (Oval/Rounded Rectangle) */}
       <div
-        className="relative w-full aspect-[4/3] rounded-[4rem] sm:rounded-[6rem] border-[12px] border-[#2c1810]"
+        className="relative w-full aspect-square md:aspect-[4/3] rounded-[3rem] sm:rounded-[6rem] border-[8px] md:border-[12px] border-[#2c1810]"
         style={{
           background: 'radial-gradient(ellipse at center, #1b6338 0%, #0d381e 100%)',
           boxShadow: 'inset 0 0 80px rgba(0,0,0,0.6), 0 20px 40px rgba(0,0,0,0.7)',

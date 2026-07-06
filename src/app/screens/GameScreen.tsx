@@ -50,15 +50,17 @@ export function GameScreen() {
         <div className="pointer-events-auto">
           <button
             onClick={handleLeave}
-            className="cursor-pointer px-4 py-2 rounded-xl bg-slate-900/60 backdrop-blur-md border border-red-500/30 text-xs font-bold text-red-400 hover:text-white hover:bg-red-900/80 transition-colors shadow-lg"
+            className="cursor-pointer px-3 md:px-4 py-2 rounded-xl bg-slate-900/60 backdrop-blur-md border border-red-500/30 font-bold text-red-400 hover:text-white hover:bg-red-900/80 transition-colors shadow-lg"
+            title="Abandonar Partida"
           >
-            ← ABANDONAR PARTIDA
+            <span className="md:hidden text-lg leading-none">🚪</span>
+            <span className="hidden md:inline text-xs">← ABANDONAR PARTIDA</span>
           </button>
         </div>
-        <div className="pointer-events-auto shadow-2xl flex-1 flex justify-center">
+        <div className="pointer-events-auto shadow-2xl flex-1 flex justify-center px-2">
           <RoundInfo state={state} />
         </div>
-        <div className="w-72 pointer-events-auto shadow-2xl hidden md:block">
+        <div className="pointer-events-auto absolute top-4 right-4 md:static md:w-72 shadow-2xl z-50">
           <GameLog entries={log} />
         </div>
       </header>
@@ -70,10 +72,6 @@ export function GameScreen() {
 
       {/* Player Input Area (Bottom) */}
       <footer className="w-full h-40 bg-black/50 border-t border-white/5 relative flex justify-center pb-6">
-        {/* Game Log Mobile Overlay (only visible on small screens when bidding is hidden) */}
-        <div className="absolute top-[-170px] left-4 w-64 pointer-events-auto shadow-2xl md:hidden">
-          <GameLog entries={log} />
-        </div>
 
         {humanPlayer && !humanPlayer.eliminated && (
           <>
